@@ -2,10 +2,10 @@
     <div v-if="state">
         <div class="d-flex justify-content-between align-items-center mb-4">
             <div>
-                <select name="" id="" class="form-control" v-model="filterCounty">
+                <select2 id="select-dropdown" name="" class="form-control" v-model="filterCounty">
                     <option value="">All Counties</option>
                     <option v-for="county in counties" :value="county">{{ county }}</option>
-                </select>
+                </select2>
             </div>
 
             <div>
@@ -34,8 +34,10 @@
 
 <script>
 import allZipCodes from '../allZipCodes';
+import Select2 from './Select2';
 
 export default {
+    components: {Select2},
     props: ['state'],
     data() {
         return {
@@ -88,6 +90,8 @@ export default {
 
                 result.push(zipCode.county_name);
             }
+
+            result = result.sort();
 
             return result;
         }
